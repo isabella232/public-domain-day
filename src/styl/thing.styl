@@ -48,12 +48,14 @@ ul#legend
       height: 15px
       margin-right: 6px
       float: left
+      border: 1px solid $qz-map-land-stroke
 
-    span
+    div
       whitespace: nowrap
       fill: $qz-gray-2
       font-size: 12px
       font-family: 'AdelleSans-Regular', Helvetica, Arial, sans-serif
+      float: left;
 
     &.term-less b
       background-color: #51b2e5
@@ -69,6 +71,9 @@ ul#legend
 
     &.term-more b
       background-color: #d190b6
+
+    &.term-other b
+      background-color: $qz-map-land-fill
 
 /*
  * Media queries
