@@ -1,28 +1,38 @@
-// Interactive-specific css here
-
+/*
+ * Config
+ */
 border-radius()
   -webkit-border-radius: arguments
   -moz-border-radius: arguments
   border-radius: arguments
 
-svg {
-  background-color: $qz-map-water;
-}
+/*
+ * Thing styles
+ */
+svg
+  background-color: $qz-map-water
 
-.borders path {
-  stroke: $qz-map-land-stroke;
-  stroke-width: 1px;
-  fill: $qz-map-land-fill;
-}
+.borders path
+  stroke: $qz-map-land-stroke
+  stroke-width: 1px
+  fill: $qz-map-land-fill
 
-#footer {
-  fill: $qz-gray-2;
-  font-family: 'AdelleSans-Regular', Helvetica, Arial, sans-serif;
-  // font-size: 80%;
-}
+  &.term-50
+    fill: #cee4e2
 
-@media screen and (max-width: 600px) {
-  #footer {
-    font-size: 60%;
-  }
-}
+  &.term-70
+    fill: #f1d9d2
+
+#footer
+  fill: $qz-gray-2
+  font-family: 'AdelleSans-Regular', Helvetica, Arial, sans-serif
+
+/*
+ * Media queries
+ */
+@media screen and (max-width: 600px)
+  .borders path
+    stroke-width: 0.5px
+
+  #footer
+    font-size: 60%

@@ -14,6 +14,7 @@ var DEFAULT_WIDTH = 940;
 var MOBILE_THRESHOLD = 600;
 
 var bordersData = null;
+var termsData = null;
 
 var isMobile = false;
 
@@ -21,8 +22,12 @@ function init() {
   request.json('data/borders-topo.json', function(error, data) {
     bordersData = topojson.feature(data, data['objects']['ne_110m_admin_0_countries']);
 
-    render();
-    $(window).resize(throttle(onResize, 250));
+    request.csv('data/copyright-terms.csv', function(error, data) {
+      termsData = data;
+
+      render();
+      $(window).resize(throttle(onResize, 250));
+    });
   });
 }
 
@@ -42,7 +47,8 @@ function render() {
   renderMap({
     container: '#map',
     width: width,
-    borders: bordersData
+    borders: bordersData,
+    terms: termsData
   });
 
   // Resize
@@ -56,8 +62,8 @@ function renderMap(config) {
     /*
      * Setup
      */
-    var aspectRatio = 5 / 3.5;
-    var defaultScale = 350;
+    var aspectRatio = 5 / 2;
+    var defaultScale = 175;
     var defaultDotSize = 3;
 
     var margins = {
@@ -74,7 +80,7 @@ function renderMap(config) {
     var chartWidth = width - (margins['left'] + margins['right']);
     var chartHeight = height - (margins['top'] + margins['bottom']);
 
-    var mapCenter = [53, 4];
+    var mapCenter = [0, 0];
     var scaleFactor = chartWidth / DEFAULT_WIDTH;
     var mapScale = scaleFactor * defaultScale;
 
@@ -112,10 +118,21 @@ function renderMap(config) {
     borders.selectAll('path')
       .data(config['borders']['features'])
       .enter().append('path')
-      .attr('id', function(d) {
-        return d['id'];
-      })
-      .attr('d', geoPath);
+        .attr('id', function(d) {
+          return d['id'];
+        })
+        .attr('class', function(d) {
+          var term = _.find(config['terms'], function(t) {
+            return (t['ccode'] == d['id']);
+          });
+
+          if (_.isUndefined(term)) {
+            return '';
+          }
+
+          return 'term-' + term['term'];
+        })
+        .attr('d', geoPath);
 
     chartElement.append('text')
       .attr('id', 'footer')
