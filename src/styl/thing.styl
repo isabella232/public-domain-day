@@ -17,8 +17,6 @@ svg
   stroke-width: 1px
   fill: $qz-map-land-fill
 
-  // #51b2e5, #b4d8e3, #ffffe0, #e9c8cb, #d190b6
-
   &.term-less
     fill: #51b2e5
 
@@ -34,9 +32,43 @@ svg
   &.term-more
     fill: #d190b6
 
-#footer
-  fill: $qz-gray-2
-  font-family: 'AdelleSans-Regular', Helvetica, Arial, sans-serif
+ul#legend
+  padding: 0
+  list-style-type: none
+
+  li
+    display: inline-block
+    margin: 0 18px 0 0
+    padding: 0
+    line-height: 15px
+
+    b
+      display: inline-block
+      width: 15px
+      height: 15px
+      margin-right: 6px
+      float: left
+
+    span
+      whitespace: nowrap
+      fill: $qz-gray-2
+      font-size: 12px
+      font-family: 'AdelleSans-Regular', Helvetica, Arial, sans-serif
+
+    &.term-less b
+      background-color: #51b2e5
+
+    &.term-50 b
+      background-color: #b4d8e3
+
+    &.term-middle b
+      background-color: #ffffe0
+
+    &.term-70 b
+      background-color: #e9c8cb
+
+    &.term-more b
+      background-color: #d190b6
 
 /*
  * Media queries

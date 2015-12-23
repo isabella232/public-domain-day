@@ -63,7 +63,7 @@ function renderMap(config) {
     /*
      * Setup
      */
-    var aspectRatio = 5 / 2;
+    var aspectRatio = 5 / 1.7;
     var defaultScale = 175;
     var defaultDotSize = 3;
 
@@ -81,7 +81,7 @@ function renderMap(config) {
     var chartWidth = width - (margins['left'] + margins['right']);
     var chartHeight = height - (margins['top'] + margins['bottom']);
 
-    var mapCenter = [0, 0];
+    var mapCenter = [0, 8];
     var scaleFactor = chartWidth / DEFAULT_WIDTH;
     var mapScale = scaleFactor * defaultScale;
 
@@ -166,12 +166,6 @@ function renderMap(config) {
           return null;
         })
         .attr('d', geoPath);
-
-    chartElement.append('text')
-      .attr('id', 'footer')
-      .attr('x', 0)
-      .attr('y', chartHeight * 0.99)
-      .text('* Each dot represents one pirate attack.')
 }
 
 $(document).ready(function () {
