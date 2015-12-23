@@ -4,6 +4,7 @@ var request = require('d3-request');
 require("d3-geo-projection")(d3);
 var topojson = require('topojson');
 var _ = require('lodash');
+var textures = require('textures');
 
 var fm = require('./fm');
 var throttle = require('./throttle');
@@ -110,6 +111,17 @@ function renderMap(config) {
       .attr('transform', 'translate(' + margins['left'] + ',' + margins['top'] + ')');
 
     /*
+     * Textures
+     */
+    var usTexture = textures.lines()
+      .size(15 * scaleFactor)
+      .strokeWidth(5 * scaleFactor)
+      .stroke('#d190b6')
+      .background('#e9c8cb');
+
+    chartElement.call(usTexture);
+
+    /*
      * Create geographic elements.
      */
     var borders = chartElement.append('g')
@@ -145,6 +157,13 @@ function renderMap(config) {
           }
 
           return ''
+        })
+        .style('fill', function(d) {
+          if (d['id'] == 'US1') {
+            return usTexture.url();
+          }
+
+          return null;
         })
         .attr('d', geoPath);
 
