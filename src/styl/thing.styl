@@ -1,0 +1,28 @@
+// Interactive-specific css here
+
+border-radius()
+  -webkit-border-radius: arguments
+  -moz-border-radius: arguments
+  border-radius: arguments
+
+svg {
+  background-color: $qz-map-water;
+}
+
+.borders path {
+  stroke: $qz-map-land-stroke;
+  stroke-width: 1px;
+  fill: $qz-map-land-fill;
+}
+
+#footer {
+  fill: $qz-gray-2;
+  font-family: 'AdelleSans-Regular', Helvetica, Arial, sans-serif;
+  // font-size: 80%;
+}
+
+@media screen and (max-width: 600px) {
+  #footer {
+    font-size: 60%;
+  }
+}
