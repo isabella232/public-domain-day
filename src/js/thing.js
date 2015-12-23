@@ -63,9 +63,8 @@ function renderMap(config) {
     /*
      * Setup
      */
-    var aspectRatio = 5 / 1.7;
-    var defaultScale = 175;
-    var defaultDotSize = 3;
+    var aspectRatio = 5 / 2.5;
+    var defaultScale = 180;
 
     var margins = {
       top: 0,
@@ -81,18 +80,17 @@ function renderMap(config) {
     var chartWidth = width - (margins['left'] + margins['right']);
     var chartHeight = height - (margins['top'] + margins['bottom']);
 
-    var mapCenter = [0, 8];
+    var mapCenter = [10, 13];
     var scaleFactor = chartWidth / DEFAULT_WIDTH;
     var mapScale = scaleFactor * defaultScale;
 
-    var projection = d3.geo.cylindricalEqualArea()
+    var projection = d3.geo.robinson()
       .center(mapCenter)
       .translate([width / 2, height / 2])
       .scale(mapScale);
 
     var geoPath = d3.geo.path()
       .projection(projection)
-      .pointRadius(defaultDotSize * scaleFactor);
 
     // Clear existing graphic (for redraw)
     var containerElement = d3.select(config['container']);
