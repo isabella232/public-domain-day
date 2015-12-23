@@ -17,11 +17,26 @@ svg
   stroke-width: 1px
   fill: $qz-map-land-fill
 
+  // #51b2e5, #b4d8e3, #ffffe0, #e9c8cb, #d190b6
+
+  &.term-less
+    fill: #51b2e5
+
   &.term-50
-    fill: #cee4e2
+    fill: #b4d8e3
+
+  &.term-middle
+    fill: #ffffe0
 
   &.term-70
-    fill: #f1d9d2
+    fill: #e9c8cb
+
+  &.term-more
+    fill: #d190b6
+
+  &#US1
+    fill: url(#diagonal-stripe-1) blue;
+
 
 #footer
   fill: $qz-gray-2

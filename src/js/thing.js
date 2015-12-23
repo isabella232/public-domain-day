@@ -130,7 +130,21 @@ function renderMap(config) {
             return '';
           }
 
-          return 'term-' + term['term'];
+          var years = parseInt(term['term']);
+
+          if (years < 50) {
+            return 'term-less';
+          } else if (years == 50) {
+            return 'term-50';
+          } else if (years < 70){
+            return 'term-middle';
+          } else if (years == 70) {
+            return 'term-70';
+          } else if (years > 70) {
+            return 'term-more';
+          }
+
+          return ''
         })
         .attr('d', geoPath);
 
